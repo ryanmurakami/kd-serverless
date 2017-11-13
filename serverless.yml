@@ -1,7 +1,7 @@
 service: user-sync
 
 custom:
-  kualiApiKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ZjBiZjI2ZGFkMTgyMDAwMTQ5ODI5YiIsImlzcyI6Imt1YWxpLmNvIiwiZXhwIjoxNTQwNDg1Nzk4LCJpYXQiOjE1MDg5NDk3OTh9.FtJY7uAylelirZXlJr0Kjeb2qYbA3ZqHYP3qGG68tkU
+  kualiApiKey: ${ssm:monsters_key}
   userTable: users
   institution: monsters
 
