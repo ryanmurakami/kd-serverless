@@ -20,8 +20,8 @@ provider:
       Resource: 'arn:aws:dynamodb:${self:provider.region}:*:*'
 
 functions:
-  hello:
-    handler: handler.hello
+  sync:
+    handler: handler.sync
     events:
       - schedule: rate(24 hours)
       - http: GET /
@@ -32,7 +32,7 @@ functions:
 
 resources:
  Resources:
-   NewResource:
+   UserTable:
      Type: AWS::DynamoDB::Table
      Properties:
        TableName: ${self:custom.userTable}

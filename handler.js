@@ -1,7 +1,7 @@
 const query = require('./lib/user.query')
 const put = require('./lib/user.put')
 
-module.exports.hello = (event, context, callback) => {
+module.exports.sync = (event, context, callback) => {
   query()
     .then(users => put(users))
     .then(() => {
