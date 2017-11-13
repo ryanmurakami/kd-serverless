@@ -1,0 +1,47 @@
+service: user-sync
+
+custom:
+  kualiApiKey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5ZjBiZjI2ZGFkMTgyMDAwMTQ5ODI5YiIsImlzcyI6Imt1YWxpLmNvIiwiZXhwIjoxNTQwNDg1Nzk4LCJpYXQiOjE1MDg5NDk3OTh9.FtJY7uAylelirZXlJr0Kjeb2qYbA3ZqHYP3qGG68tkU
+  userTable: users
+  institution: monsters
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  region: us-west-2
+  profile: kuali-dev
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:BatchWriteItem
+      Resource: 'arn:aws:dynamodb:${self:provider.region}:*:*'
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - schedule: rate(24 hours)
+      - http: GET /
+    environment:
+      apiKey: ${self:custom.kualiApiKey}
+      institution: ${self:custom.institution}
+      table: ${self:custom.userTable}
+
+resources:
+ Resources:
+   NewResource:
+     Type: AWS::DynamoDB::Table
+     Properties:
+       TableName: ${self:custom.userTable}
+       KeySchema:
+         - AttributeName: id
+           KeyType: HASH
+       AttributeDefinitions:
+         - AttributeName: id
+           AttributeType: S
+       ProvisionedThroughput:
+         ReadCapacityUnits: 5
+         WriteCapacityUnits: 5
