@@ -1,17 +1,12 @@
 # Serverless Demo Application
 
 ## Prerequisites
-[Node v6+](https://nodejs.org/en/)
-[Serverless v1.24+](https://www.serverless.com/)
+- [Node v6+](https://nodejs.org/en/)
+- [Serverless v1.24+](https://www.serverless.com/)
 
 ## Getting Started
 
-Install with Serverless:
-```sh
-$ serverless install --url https://github.com/ryanmurakami/kd-serverless --name my-svc
-```
-
-or clone this repo:
+Clone this repo
 ```sh
 $ git clone https://github.com/ryanmurakami/kd-serverless.git
 ```
